@@ -1,0 +1,10 @@
+.spec {
+    margin: 10rem 0;
+    &--body {
+        width: 100%;
+        display: grid;
+        gap: 5rem;
+        padding-top: 7rem;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

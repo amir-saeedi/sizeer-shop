@@ -1,0 +1,12 @@
+.header-offer {
+    padding: 10rem 0;
+
+    &--cards {
+        padding-top: 5rem;
+        display: grid;
+        gap: 10rem;
+        grid-template-columns: repeat(3, 1fr);
+        justify-content: space-around;
+        align-items: center;
+    }
+}

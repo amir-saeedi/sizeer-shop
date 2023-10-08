@@ -1,0 +1,114 @@
+.footer {
+    position: relative;
+    margin-top: 5rem;
+    padding: 10rem 0;
+    font-size: 1.4rem;
+    color: $color-grey-light-1 ;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    border-radius: 5px;
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+
+        .footer__list--header {
+            font-size: 2rem;
+            font-weight: 600;
+            line-height: 6rem;
+        }
+
+        li {
+            cursor: pointer;
+            transition: all .2s;
+
+            &:hover {
+                color: $color-secondary-dark;
+                transform: translateX(1px);
+            }
+        }
+    }
+
+    &__form {
+        display: grid;
+        grid-template-rows: repeat(2, 1fr);
+        justify-content: center;
+
+        h3 {
+            line-height: 6rem;
+            font-size: 3rem;
+            color: $color-secondary-dark;
+        }
+
+        &--input {
+            position: relative;
+            display: inline-block;
+            background-color:$color-white;
+            border-radius: 1000px;
+            padding: 1rem 1.5rem;
+
+            input {
+                font-size: 1.3rem;
+                border: none;
+                outline: none;
+            }
+
+            input::placeholder {
+                color: $color-black;
+            }
+
+            input:focus+.footer__form--input--icon {
+                background-color: $color-secondary-light;
+                color: $color-grey-dark-3;
+            }
+
+            &--icon {
+                position: absolute;
+                top: 50%;
+                right: 0;
+                // width: 100%;
+                height: 100%;
+                border-radius: 1000px;
+                width: 4rem;
+                transform: translate(0, -50%);
+                background: $color-secondary-dark;
+                padding: 1rem 1rem;
+                transition: all .5s;
+
+                &:hover {
+                    transform: translate(0, -50%) translateX(3px);
+                }
+            }
+        }
+    }
+
+    &__bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        z-index: -1;
+        grid-template-columns: 1fr 1fr;
+        align-items: end;
+        justify-content: space-between;
+        background-color: $color-grey-dark-3;
+        border-radius: 5px;
+
+        &--1,
+        &--2 {
+            opacity: 0.3;
+            width: 60%;
+            margin: 3rem;
+            // margin: auto;
+            // display: inline-block;
+        }
+
+        &--2 {
+            margin-left: auto;
+            opacity: .2;
+        }
+    }
+}
