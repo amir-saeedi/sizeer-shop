@@ -73,4 +73,7 @@ main {
     position: relative;
     overflow: hidden;
     padding: 3rem;
+    @include respond(tab-land) {
+        padding: 0;
+    }
 }

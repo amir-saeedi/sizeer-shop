@@ -25,6 +25,11 @@
 
     .navbar-brand {
         margin-right: 3rem;
+
+        img {
+            height: 4.5rem;
+            padding: 3px 15px;
+        }
     }
 
     .nav-link-icon {
@@ -59,11 +64,20 @@
                 width: 0;
                 margin-bottom: 0.5rem;
                 padding: 1rem;
+                border-bottom: 1px solid $color-grey-dark ;
+                box-shadow: .1px .1px 1rem $color-grey-dark;
+                transition: all .3s;
+
+                &:hover {
+                    background: $color-tertiary-light;
+                    transform: translateY(1px);
+                }
             }
 
             &--img {
                 width: 50px;
                 height: 50px;
+                border: 3px solid $color-secondary-dark;
                 border-radius: 50%;
                 mix-blend-mode: multiply;
                 // object-fit: cover;
@@ -82,6 +96,7 @@
             &--rate {
                 text-align: start;
                 flex: 1 0 3rem;
+
                 svg {
                     position: relative;
                     margin: 0;
@@ -90,7 +105,8 @@
                     top: 0.6rem;
                 }
             }
-            &--price{
+
+            &--price {
                 flex: 1 0 0.5rem;
                 color: $color-black;
                 font-size: 1.2rem;
@@ -113,11 +129,21 @@
             &:focus {
                 width: 50rem;
             }
+
+            @include respond(phone) {
+                &:focus {
+                    width: 100%;
+                }
+            }
         }
 
         .navbar__search--input:focus+.nav__search__list {
             height: 30rem;
             width: 50rem;
+
+            @include respond(phone) {
+                width: 92%;
+            }
 
             li {
                 display: flex;
@@ -163,5 +189,34 @@
 
     100% {
         height: 5rem;
+    }
+}
+
+.dropdown-menu {
+    background: $color-grey-dark-3;
+}
+
+.dropdown-item {
+    &:hover {
+        background: $color-grey-dark;
+    }
+}
+
+.navbar-toggler {
+    background: #fff;
+}
+
+@include respond(phone) {
+    .navbar-nav {
+        padding-left: 1.5rem;
+        align-items: flex-start;
+    }
+
+    .navbar__search {
+        padding: 1rem !important;
+    }
+
+    .navbar__search--input {
+        margin-right: 0 !important;
     }
 }

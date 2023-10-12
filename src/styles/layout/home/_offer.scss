@@ -8,5 +8,13 @@
         grid-template-columns: repeat(3, 1fr);
         justify-content: space-around;
         align-items: center;
+        @include respond(tab-port) {
+            grid-template-columns: 1fr 1fr;
+            padding: 2rem;
+        }
+        @include respond(phone) {
+            grid-template-columns: 1fr;
+            padding: 5rem;
+        }
     }
 }

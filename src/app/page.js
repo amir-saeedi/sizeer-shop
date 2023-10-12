@@ -156,9 +156,9 @@ export default async function Home({ params, searchParams }) {
               </div>
             </div>
           </header>
-          <section className='spec'>
+          <section className='vip'>
             <h2 className='heading-secondary'>Specialy for You</h2>
-            <div className='spec--body'>
+            <div className='vip--body'>
 
               {data && data.map((val, index) => {
                 // Just for show beter images :)
@@ -198,7 +198,7 @@ export default async function Home({ params, searchParams }) {
             <div>
               <div className="row">
                 <div className="col-sm-6 d-flex justify-content-center">
-                  <div className="ih-item circle colored effect7 left_to_right" style={{ transform: "scale(1.5)" }}><a href="#">
+                  <div className="ih-item circle colored effect7 left_to_right card-story-main"><a href="#">
                     <div className="img"><img src="/story1.jpg" alt="img" /></div>
                     <div className="info">
                       <h3>Heading here</h3>
@@ -206,7 +206,7 @@ export default async function Home({ params, searchParams }) {
                     </div></a></div>
                 </div>
                 <div className="col-sm-6 d-flex justify-content-center">
-                  <div className="ih-item circle colored effect7 right_to_left" style={{ transform: "scale(1.5)" }}><a href="#">
+                  <div className="ih-item circle colored effect7 right_to_left card-story-main"><a href="#">
                     <div className="img"><img src="/story2.jpg" alt="img" /></div>
                     <div className="info">
                       <h3>Heading here</h3>

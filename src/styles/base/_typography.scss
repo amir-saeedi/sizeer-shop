@@ -27,6 +27,7 @@ body {
             letter-spacing: 1rem;
             font-family: 5rem;
         }
+
         /*
         animation-delay: 3s;
         animation-iteration-count: 3;
@@ -56,6 +57,11 @@ body {
     color: transparent;
     letter-spacing: .2rem;
     transition: all .2s;
+
+    @include respond(phone) {
+        width: 100%;
+        text-align: center;
+    }
 
     @include respond(tab-port) {
         font-size: 3rem;

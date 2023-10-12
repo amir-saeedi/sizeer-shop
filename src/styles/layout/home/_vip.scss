@@ -1,4 +1,4 @@
-.spec {
+.vip {
     margin: 10rem 0;
     &--body {
         width: 100%;
@@ -6,5 +6,14 @@
         gap: 5rem;
         padding-top: 7rem;
         grid-template-columns: repeat(4, 1fr);
+        @include respond(tab-land) {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        @include respond(tab-port) {
+            grid-template-columns: 1fr 1fr;
+        }
+        @include respond(phone) {
+            grid-template-columns: 1fr;
+        }
     }
 }
