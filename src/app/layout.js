@@ -2,9 +2,11 @@ import 'bootstrap/dist/css/bootstrap.css';
 import "../styles/main.scss";
 import { Inter } from 'next/font/google';
 import Footer from "../components/Footer"
+import Navbar from '../components/Navbar'
 import localFont from 'next/font/local';
 import { Providers } from "../redux/provider";
 import { store } from '../redux/store';
+
 
 const inter = Inter({ subsets: ['latin'] })
 const myFont = localFont({ src: '../fonts/Borel-Regular.ttf' })
@@ -23,6 +25,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Providers>
+          <Navbar />
           {children}
           <Footer />
         </Providers>

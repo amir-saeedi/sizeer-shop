@@ -7,7 +7,8 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { FaRegUser, FaSearch, FaShoppingCart, FaStar, FaStarHalf } from "react-icons/fa"
+import { FaRegUser, FaSearch, FaShoppingCart, FaStar, FaStarHalf } from "react-icons/fa";
+import { usePathname } from 'next/navigation'
 
 async function getData() {
     const res = await fetch('https://fakestoreapi.com/products', {
@@ -23,9 +24,8 @@ async function getData() {
 }
 
 function NavbarCom() {
+    const pathname = usePathname()
     const [data, setData] = React.useState(null);
-    const navSerch = React.useRef(null);
-    // const [stucky, setStucky] = React.useState(false);
     React.useEffect(() => {
         getData().then(valuse => setData(valuse));
     }, []);
@@ -41,22 +41,15 @@ function NavbarCom() {
                 nav.current?.classList.remove("sticky");
             }
         };
-        window.addEventListener('scroll', handleScroll);
+        if (pathname === "/")
+            window.addEventListener('scroll', handleScroll);
         return () => {
-            window.removeEventListener('scroll', handleScroll);
+            if (pathname === "/")
+                window.removeEventListener('scroll', handleScroll);
         };
     }, []);
-    console.log(navSerch.current)
     return (
-        // <div className='nav'>
-        //     <Link href="/dashboard" >dashboard</Link >
-        // </div>
-        // <div id="navbar" className='navbar noSticky' ref={nav} >
-        //     <a href="#home">Home</a>
-        //     <a href="#news">News</a>
-        //     <a href="#contact">Contact</a>
-        // </div>
-        <div id="navbarC" className='navAnimation noSticky' ref={nav}>
+        <div id="navbarC" className={`navAnimation ${pathname === "/" ? "noSticky" : "sticky"}`} ref={nav}>
             <Navbar collapseOnSelect expand="lg" className="" bg='red'>
                 <Container>
                     <Navbar.Brand href="#home">
@@ -102,7 +95,7 @@ function NavbarCom() {
                                                     <img src={val.image} alt={val.title} className='nav__search__list--img' />
                                                     <p className='nav__search__list--title'>{val.title}</p>
                                                     <div className='nav__search__list--rate'>
-                                                        {[...Array(Math.round(val.rating.rate))].map((_, i) => (<FaStar key={i*100} color='#d27a4b'  />))}
+                                                        {[...Array(Math.round(val.rating.rate))].map((_, i) => (<FaStar key={i * 100} color='#d27a4b' />))}
                                                     </div>
                                                     <p className='nav__search__list--price'>${val.price.toFixed(1)}</p>
                                                 </li>

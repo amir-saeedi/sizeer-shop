@@ -4,7 +4,6 @@ import React, { useEffect } from 'react'
 import Image from 'next/image'
 import { FaSearch, FaRegHeart, FaShoppingBasket, FaHeart, FaStar, FaArrowRight } from 'react-icons/fa'
 import localFont from 'next/font/local'
-import Navbar from '../components/Navbar'
 
 const myFont = localFont({ src: '../fonts/Borel-Regular.ttf' })
 const myFont2 = localFont({
@@ -15,7 +14,6 @@ import { RootState } from "../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 // import { increment, decrement, incrementByAmount } from "../redux/Features/counter/counterSlice"
 import { incrementBird } from "../redux/Features/counter/counterSlice"
-
 async function getData() {
   const res = await fetch('https://fakestoreapi.com/products', {
     // cache: "force-cache" // SSG get static side props
@@ -307,7 +305,7 @@ export default async function Home({ params, searchParams }) {
           </section>
         </main >)
       }
-      <Navbar />
+
     </React.Fragment>
   )
 }

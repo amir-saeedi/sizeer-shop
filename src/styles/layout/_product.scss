@@ -1,0 +1,304 @@
+.product {
+    padding-top: 10rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+
+    &__gallery {
+        max-width: 60rem;
+        mix-blend-mode: multiply;
+
+        &--box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 0;
+            box-shadow: 1px 1px 10px $color-box-shadow;
+
+            .carousel {
+                width: 100%;
+            }
+
+            .carousel-item {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        &--photos {
+            height: 42rem;
+            mix-blend-mode: multiply;
+
+            &--1 {
+                filter: hue-rotate(260deg);
+            }
+
+            &--2 {
+                filter: hue-rotate(460deg);
+            }
+        }
+
+        &--list {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: nowrap;
+            overflow: auto;
+            margin-top: 2rem;
+            width: 100%;
+            height: 12rem;
+
+            &--photos {
+                height: 100%;
+                box-shadow: 1px 1px 10px $color-box-shadow;
+
+                &--1 {
+                    filter: hue-rotate(260deg);
+                }
+
+                &--2 {
+                    filter: hue-rotate(460deg);
+                }
+            }
+
+            .active--photo {
+                border-radius: 3px;
+                border: 3px solid $color-primary-dark;
+            }
+        }
+    }
+
+    &__details {
+        width: 100%;
+        height: 100%;
+        background: $color-white;
+        border-radius: 5px;
+        padding: 2rem 4rem;
+
+        &--title {
+            color: $color-black;
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 2rem;
+            text-transform: uppercase;
+            padding-bottom: 1.5rem;
+        }
+
+        &--description {
+            font-size: 1rem;
+            line-height: 1.2rem;
+            padding-bottom: 1.5rem;
+        }
+
+        &--rate {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid $color-box-shadow;
+        }
+
+        &--price {
+            padding-top: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid $color-box-shadow;
+
+            span {
+                font-size: 2rem;
+                line-height: 2rem;
+                color: $color-black;
+                font-weight: 600;
+                display: inline-block;
+            }
+        }
+
+        &--color {
+            padding-top: 2.5rem;
+            padding-bottom: 3rem;
+
+            p {
+                color: $color-black;
+                font-size: 1.4rem;
+                font-weight: 500;
+                padding-bottom: 1rem;
+            }
+
+            .product__details--color--list {
+                width: fit-content;
+                display: grid;
+                gap: 1.5rem;
+                grid-template-columns: repeat(5, 1fr);
+
+                &__li {
+                    position: relative;
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    border-radius: 50%;
+                    transition: all 0.3s;
+
+                    &::after {
+                        content: "";
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                        position: absolute;
+                    }
+
+                    &--1 {
+                        background-color: rgb(227 84 78);
+
+                        &::after {
+                            background-image: linear-gradient(rgb(248 203 197) 50%, transparent 50%);
+                        }
+                    }
+
+                    &--2 {
+                        background-color: rgb(196 196 196);
+
+                        &::after {
+                            background-image: linear-gradient(rgb(60 61 56) 50%, transparent 50%);
+                        }
+                    }
+
+                    &--3 {
+                        background-color: rgb(175 190 171);
+
+                        &::after {
+                            background-image: linear-gradient(rgb(231 236 230) 50%, transparent 50%);
+                        }
+                    }
+
+                    &--4 {
+                        background-color: rgb(243 243 243);
+
+                        &::after {
+                            background-image: linear-gradient(rgb(210 210 212) 50%, transparent 50%);
+                        }
+                    }
+
+                    &--5 {
+                        background-color: rgb(48 80 110);
+
+                        &::after {
+                            background-image: linear-gradient(rgb(193 203 212) 50%, transparent 50%);
+                        }
+                    }
+
+                    &:hover {
+                        transform: scale(1.2);
+                        outline: 1.5px solid $color-black;
+                    }
+                }
+
+                .active {
+                    border: 3px solid $color-white;
+                    outline: 3px solid $color-primary-dark;
+
+                    &:hover {
+                        transform: scale(1);
+                    }
+                }
+            }
+        }
+
+        &--counter {
+            display: grid;
+            grid-template-columns: min-content 1fr;
+            gap: 5rem;
+
+            &--box {
+                display: flex;
+                align-items: center;
+                gap: 2rem;
+                background: $color-primary-light;
+                padding: 1rem 2rem;
+                border-radius: 1rem;
+
+                p {
+                    font-size: 1.6rem;
+                    font-weight: 600;
+                    color: $color-white;
+                }
+            }
+
+            &--text {
+                font-size: 1.2rem;
+
+                span {
+                    color: $color-secondary-dark;
+                }
+            }
+        }
+
+        &--buttons {
+            padding-top: 3rem;
+
+            &--1 {
+                background: $color-primary-dark;
+                color: $color-white;
+                margin-right: 2rem;
+                font-size: 1.2rem;
+                width: 18rem;
+
+                &:hover,
+                &:focus,
+                &:active {
+                    color: $color-grey-light-1 !important;
+                    background: $color-primary-dark !important;
+                    opacity: 0.9;
+                }
+            }
+
+            &--2 {
+                border: 2px solid $color-primary-dark;
+                font-size: 1.2rem;
+                width: 18rem;
+
+                &:hover,
+                &:focus,
+                &:active {
+                    border: 2px solid $color-primary-dark !important;
+                }
+            }
+        }
+
+        &--delivery {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 1.5rem;
+            padding-top: 2rem;
+
+            &--box {
+                display: grid;
+                grid-template-columns: min-content 1fr;
+                grid-template-rows: min-content 1fr;
+                align-items: center;
+                column-gap: 1rem;
+
+                span {
+                    font-size: 2rem;
+                    color: $color-secondary-dark;
+                }
+
+                h6 {
+                    font-size: 1.5rem;
+                    margin-bottom: 0;
+                    color: $color-grey-dark-3;
+                }
+
+                p {
+                    grid-row: 2;
+                    grid-column: 1/span 2;
+                    color: $color-grey-dark;
+
+                    a {
+                        color: $color-grey-dark;
+                        text-decoration: underline !important;
+                    }
+                }
+            }
+        }
+    }
+}
