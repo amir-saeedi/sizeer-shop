@@ -3,6 +3,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Badge, Image, Carousel } from "react-bootstrap";
 import { FaAngleLeft, FaAngleRight, FaMinus, FaPlus, FaSave, FaShippingFast, FaStar } from "react-icons/fa";
+import ModalComponent from "../../../components/ModalComponent";
+import Button from 'react-bootstrap/Button';
 
 async function getData(id) {
   const res = await fetch(`https://fakestoreapi.com/products/${id}`, {
@@ -24,6 +26,8 @@ function pages({ params, searchParams }) {
   const [zoom, setZoom] = useState(false);
   const carouselContainerRef = useRef(null);
 
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
 
   const galleryHandler = (idx) => {
     setActiveIndex(idx);
@@ -165,6 +169,10 @@ function pages({ params, searchParams }) {
           </div>
         </div>
       }
+      {/* <Button variant="primary" onClick={handleShow}>
+        Launch demo modal
+      </Button> */}
+      <ModalComponent show={show} setShow={setShow} justAccept={true} />
     </React.Fragment >
   )
 }
