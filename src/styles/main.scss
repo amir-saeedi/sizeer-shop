@@ -19,6 +19,8 @@
 @import "components/modal";
 // @import "components/story";
 
+@import "validation/inputs";
+
 @import "layout/footer";
 @import "layout/navbar";
 @import "layout/home/header";
@@ -26,3 +28,4 @@
 @import "layout/home/story";
 @import "layout/home/offer";
 @import "layout/product";
+@import "layout/checkout";
