@@ -5,6 +5,12 @@
     grid-template-rows: min-content 1fr;
     gap: 2rem;
 
+    @include respond(tab-port) {
+        justify-content: center;
+        grid-template-columns: min-content;
+        grid-template-rows: min-content min-content 1fr;
+    }
+
     &__review {
         border: 2px solid $color-grey-dark;
         border-radius: 5px;
@@ -15,6 +21,10 @@
                 color: $color-black;
                 font-weight: 600;
                 padding: 3rem 0;
+
+                @include respond(phone) {
+                    text-align: center;
+                }
             }
 
             li {
@@ -25,11 +35,21 @@
                 grid-template-rows: 1fr 1fr;
                 gap: 2rem;
 
+                @include respond(phone) {
+                    justify-content: center;
+                    grid-template-columns: min-content;
+                    grid-template-rows: repeat(4, min-content);
+                }
+
                 h5 {
                     color: $color-black;
                     font-size: 1.5rem;
                     font-weight: 700;
                     align-self: flex-end;
+
+                    @include respond(phone) {
+                        text-align: center;
+                    }
                 }
 
                 img {
@@ -40,18 +60,56 @@
 
                 p {
                     align-self: flex-start;
+
+                    @include respond(phone) {
+                        grid-row: 4;
+                        grid-column: 1;
+                    }
                 }
 
                 .carts__review__list--image {
                     grid-row: 1 / span 2;
+
+                    @include respond(phone) {
+                        grid-row: 1;
+                    }
+
                     background: rgba($color-primary-light, 0.2);
                     border-radius: 5px;
                     padding: 1rem;
                 }
 
+
                 .carts__review__list--quantity,
                 .carts__review__list--price {
-                    text-align: end;
+                    display: flex;
+                    justify-content: end;
+                    align-items: center;
+                    gap: 1rem;
+                }
+
+                .carts__review__list--quantity {
+                    &--icon {
+                        padding: .5rem;
+                        font-size: 2rem;
+                        border-radius: 50%;
+                        background: $color-primary-light;
+                        color: $color-white;
+                        transition: all 0.3s;
+                        &:hover{
+                            transform: translateY(1px);
+                            box-shadow: 1px 1px 20px rgba(#000,0.2);
+                        }
+                    }
+                    span{
+                        color:$color-black
+                    }
+                }
+
+                .carts__review__list--price {
+                    @include respond(phone) {
+                        justify-content: center;
+                    }
                 }
             }
         }
@@ -62,6 +120,11 @@
         border-radius: 5px;
         grid-column: 2;
         grid-row: 1 / span 2;
+
+        @include respond(tab-port) {
+            grid-column: 1;
+            grid-row: 3;
+        }
 
         &--title {
             font-size: 2rem;
@@ -246,8 +309,17 @@
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
 
+            @include respond(phone) {
+                grid-template-columns: 1fr;
+                gap: 0rem;
+            }
+
             &--address {
                 grid-column: 1 / span 2;
+
+                @include respond(phone) {
+                    grid-column: 1;
+                }
             }
         }
     }
