@@ -9,10 +9,10 @@
     border-radius: 2px;
     padding: 1rem;
     transition: all .5s;
-    cursor: pointer;
 
     &:hover {
         box-shadow: 1rem 1rem 3rem $color-grey-dark;
+        border-radius: 5px;
     }
 
     &__image {
@@ -38,7 +38,7 @@
             border-radius: 50%;
 
             svg {
-                font-size: 1.4rem;
+                font-size: 1.1rem;
             }
         }
     }

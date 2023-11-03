@@ -10,9 +10,9 @@ import { Header, Vip, Video, Offer, } from "../components/home";
 import ModalComponent from "../components/ModalComponent";
 
 // import { RootState } from "../redux/store";
-// import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 // import { increment, decrement, incrementByAmount } from "../redux/Features/counter/counterSlice"
-// import { incrementBird } from "../redux/Features/counter/counterSlice";
+import { addLikes, RemoveLikes } from "../redux/like/like";
 
 
 async function getData() {
@@ -30,7 +30,8 @@ async function getData() {
 
 // export default async function Home({ params, searchParams }) {
 export default function Home({ params, searchParams }) {
-  // const { id } = params
+  const liked = useSelector(state => state.like);
+  const dispatch = useDispatch();
   const [data, setData] = React.useState(null);
   const [show, setShow] = React.useState(false);
   const bagHandeler = () => setShow(true);
@@ -38,11 +39,12 @@ export default function Home({ params, searchParams }) {
     getData().then(valuse => setData(valuse));
   }, []);
 
-  // const count = useSelector(state => state);
-  // const dispatch = useDispatch();
-  // console.log(count)
-  // {/* <button onClick={() => dispatch(incrementBird("robin"))}>increment</button> */ }
-  // {/* <h1>here is {count[0].views}</h1> */ }
+  const addLike = (product) => {
+    dispatch(addLikes(product))
+  }
+  const removeLike = (product) => {
+    dispatch(RemoveLikes(product))
+  }
 
   return (
     <React.Fragment>
@@ -52,7 +54,7 @@ export default function Home({ params, searchParams }) {
             myFont2={myFont2}
             bagHandeler={bagHandeler}
           />
-          <Vip data={data} />
+          <Vip data={data} addLike={addLike} removeLike={removeLike} liked={liked} />
           <Video />
           <Offer />
         </main >)

@@ -1,8 +1,9 @@
 import React from 'react'
 import Image from 'next/image'
 import { FaSearch, FaRegHeart, FaShoppingBasket, FaHeart, FaStar, FaArrowRight } from 'react-icons/fa'
+import Link from 'next/link'
 
-function Vip({data}) {
+function Vip({ data, addLike, removeLike, liked }) {
     return (
         <section className='vip'>
             <h2 className='heading-secondary'>Specialy for You</h2>
@@ -12,12 +13,15 @@ function Vip({data}) {
                     // Just for show beter images :)
                     if ((index > 3 && index < 8) || (index > 15 && index < 20))
                         return (
-                            <div onClick={() => console.log("iam here")} className="card">
+                            <div key={val.id} className="card">
                                 <div className="card__image">
                                     <img src={val.image} alt={val.title} />
                                     <div className="card__image--icon">
-                                        <FaRegHeart />
-                                        {/* <FaHeart color='red' /> */}
+                                        {liked.find(like => like.id === val.id) ?
+                                            <FaHeart color='red' onClick={() => removeLike(val)} />
+                                            :
+                                            <FaRegHeart onClick={() => addLike(val)} />
+                                        }
                                     </div>
                                 </div>
                                 <div className="card__header">
@@ -29,11 +33,12 @@ function Vip({data}) {
                                 </div>
                                 <p className="card__header--description">{val.description}</p>
                                 <p className="card__header--rate">{[...Array(Math.round(val.rating.rate))].map((_, i) => (<FaStar key={i} color='#d27a4b' fontSize={20} />))}</p>
-                                <button className="btn--card">Add to Cart</button>
+                                <Link href={`/products/${val.id}`}>
+                                    <button className="btn--card">Add to Cart</button>
+                                </Link>
                             </div>
                         )
-                })
-                }
+                })}
             </div>
         </section>
     )
