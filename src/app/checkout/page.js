@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import Image from "next/image";
 import Input from "../../components/Input"
 import { useDispatch, useSelector } from "react-redux";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight, FaMinus, FaPlus, FaTrash } from "react-icons/fa";
 
 // async function getData(id) {
 //     const res = await fetch(`https://fakestoreapi.com/products/${1}`, {
@@ -61,7 +61,12 @@ function pages({ params, searchParams }) {
                                         <h5>{cart.title}</h5>
                                         <h5 className="carts__review__list--price">${cart.price}</h5>
                                         <p>Color: <span>pink</span></p>
-                                        <p className="carts__review__list--quantity">Quantinty: <span>1</span></p>
+                                        <p className="carts__review__list--quantity">Quantinty:
+                                            <FaMinus className="carts__review__list--quantity--icon" />
+                                            {/* <FaTrash className="carts__review__list--quantity--icon" /> */}
+                                            <span>1</span>
+                                            <FaPlus className="carts__review__list--quantity--icon" />
+                                        </p>
                                     </li>
                                 ))}
                             </ul>
