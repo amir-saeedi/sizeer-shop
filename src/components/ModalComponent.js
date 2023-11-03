@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FaCheck } from 'react-icons/fa';
 
-function ModalComponent({ show, setShow, justAccept = false }) {
+function ModalComponent({ show, setShow, justAccept = false, text }) {
     const handleClose = () => setShow(false);
 
     return (
@@ -16,8 +16,15 @@ function ModalComponent({ show, setShow, justAccept = false }) {
                         </div>
                     </Modal.Header>
                     <Modal.Body>
-                        <h4>Your order has been accepted</h4>
-                        <p>transection ID: 89523595230</p>
+                        {text
+                            ? text
+                            : (
+                                <>
+                                    <h4>Your order has been accepted</h4>
+                                    <p>transection ID: 89523595230</p>
+                                </>
+                            )
+                        }
                     </Modal.Body>
                     <Modal.Footer>
                         <div className='modal__btn'>

@@ -96,7 +96,8 @@
                 padding-right: 1rem;
             }
 
-            &>li {
+            &>li,
+            &>a {
                 position: relative;
                 list-style: none;
                 background: #fff;
@@ -109,9 +110,11 @@
                 justify-items: center;
                 justify-content: center;
                 transition: all .3s;
+                color: $color-black;
             }
 
-            & li:hover {
+            & li:hover,
+            & a:hover {
                 transform: translateY(2px);
             }
 
@@ -316,6 +319,11 @@
                 transform: rotate(15deg);
                 font-size: 3rem;
             }
+
+            img {
+                height: auto;
+                width: inherit;
+            }
         }
 
         &--price {
@@ -338,9 +346,10 @@
                 position: relative;
                 font-weight: 500;
                 color: #666;
+
                 @include respond(phone) {
                     color: $color-grey-light-1;
-                    }
+                }
 
                 &::before {
                     content: "";
@@ -426,6 +435,7 @@
                     background: #e8e8e8;
                     color: #adadad;
                     border: none;
+                    cursor: no-drop;
                 }
 
                 .active {
