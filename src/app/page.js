@@ -52,11 +52,7 @@ export default function Home({ params, searchParams }) {
     <React.Fragment>
       {data &&
         (<main className="">
-          <Header
-            myFont2={myFont2}
-            bagHandeler={bagHandeler}
-            liked={liked}
-          />
+          <Header myFont2={myFont2} bagHandeler={bagHandeler} liked={liked} />
           <Vip data={data} addLike={addLike} removeLike={removeLike} liked={liked} />
           <Video bagHandeler={bagHandeler} />
           <Offer bagHandeler={bagHandeler} />

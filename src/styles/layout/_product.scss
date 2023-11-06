@@ -34,6 +34,7 @@
         &--photos {
             height: 42rem;
             mix-blend-mode: multiply;
+            max-width: 100%;
 
             &--1 {
                 filter: hue-rotate(260deg);
@@ -251,8 +252,8 @@
             &--1 {
                 background: $color-primary-dark;
                 color: $color-white;
-                font-size: 1.2rem;
-                width: 18rem;
+                font-size: 1.2rem !important;
+                width: 20rem;
 
                 &:hover,
                 &:focus,
@@ -264,9 +265,10 @@
             }
 
             &--2 {
+                text-wrap: nowrap;
                 border: 2px solid $color-primary-dark;
                 font-size: 1.2rem;
-                width: 18rem;
+                width: 20rem;
 
                 &:hover,
                 &:focus,

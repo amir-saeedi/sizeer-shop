@@ -4,6 +4,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { Badge, Image, Carousel } from "react-bootstrap";
 import { FaAngleLeft, FaAngleRight, FaMinus, FaPlus, FaSave, FaShippingFast, FaStar } from "react-icons/fa";
 import ModalComponent from "../../../components/ModalComponent";
+import { useSelector, useDispatch } from "react-redux";
+import { addCarts, removeCarts } from "../../../redux/cart/carts";
+import Link from "next/link";
 
 async function getData(id) {
   const res = await fetch(`https://fakestoreapi.com/products/${id}`, {
@@ -19,12 +22,23 @@ async function getData(id) {
 }
 function pages({ params, searchParams }) {
   // const { id } = params
+  const carts = useSelector(state => state.carts);
+  const dispatch = useDispatch();
   const [data, setData] = React.useState(null);
   const [imageGallery, setImageGallery] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [zoom, setZoom] = useState(false);
   const carouselContainerRef = useRef(null);
+  console.log(carts)
 
+  const [chooseColor, setChooseColor] = useState(1);
+
+  const addCart = (product) => {
+    dispatch(addCarts(product));
+  }
+  const removeCart = (product) => {
+    dispatch(removeCarts(product));
+  }
   // const [show, setShow] = useState(false);
   // const handleShow = () => setShow(true);
 
@@ -128,11 +142,12 @@ function pages({ params, searchParams }) {
               <div className="product__details--color">
                 <p>Choose a color</p>
                 <ul className="product__details--color--list">
-                  <li className="product__details--color--list__li product__details--color--list__li--1 active"></li>
-                  <li className="product__details--color--list__li product__details--color--list__li--2"></li>
-                  <li className="product__details--color--list__li product__details--color--list__li--3"></li>
-                  <li className="product__details--color--list__li product__details--color--list__li--4"></li>
-                  <li className="product__details--color--list__li product__details--color--list__li--5"></li>
+                  {[0, 1, 2, 3].map(val =>
+                    <li
+                      onClick={() => setChooseColor(val + 1)}
+                      className={`product__details--color--list__li product__details--color--list__li--${val + 1} ${chooseColor === val + 1 ? "active" : ""}`}
+                    ></li>
+                  )}
                 </ul>
               </div>
               <div className="product__details--counter">
@@ -149,8 +164,17 @@ function pages({ params, searchParams }) {
                 </div>
               </div>
               <div className="product__details--buttons">
-                <button className="btn product__details--buttons--1">Buy Now</button>
-                <button className="btn product__details--buttons--2">Add to Cart</button>
+                <Link onClick={() => addCart(data)}
+                  className="btn product__details--buttons--1"
+                  href="/checkout">
+                  Buy Now
+                </Link>
+                <button onClick={() => {
+                  carts.find(cart => cart.id === data.id) ? removeCart(data) : addCart(data);
+                }}
+                  className="btn product__details--buttons--2">
+                  {carts.find(cart => cart.id === data.id) ? "Remove from Cart" : "Add to Cart"}
+                </button>
               </div>
               <div className="product__details--delivery">
                 <div className="product__details--delivery--box">

@@ -81,13 +81,18 @@ export function RemoveLikes(like) {
 function likes(state = initialState, action) {
     switch (action.type) {
         case ADD_LIKE:
-            return [
-                ...state,
-                {
-                    ...action.like,
-                    liked: true,
-                },
-            ];
+            const hasCart = state.find(values => values?.id === action?.like?.id);
+            if (!hasCart) {
+                return [
+                    ...state,
+                    {
+                        ...action.like,
+                        liked: true,
+                    },
+                ];
+            } else {
+                return state;
+            }
         case REMOVE_LIKE:
             return [
                 ...state.filter(value => value.id !== action.like.id)

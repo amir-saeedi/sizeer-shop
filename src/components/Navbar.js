@@ -52,7 +52,7 @@ function NavbarCom() {
         <div id="navbarC" className={`navAnimation ${pathname === "/" ? "noSticky" : "sticky"}`} ref={nav}>
             <Navbar collapseOnSelect expand="lg" className="" bg='red'>
                 <Container>
-                    <Navbar.Brand href="#home">
+                    <Navbar.Brand href="/">
                         <Image
                             src="/sizeer-logo.png"
                             alt="Vercel Logo"
