@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Offer() {
+function Offer({ bagHandeler }) {
     return (
         <section className='header-offer'>
             <h2 className='heading-secondary'>New Offfer</h2>
@@ -29,7 +29,7 @@ function Offer() {
                                 <p className="card__offer__price-only">Only</p>
                                 <p className="card__offer__price-value">$897</p>
                             </div>
-                            <a href="#popup" className="btn btn--white">Book now!</a>
+                            <a onClick={bagHandeler} className="btn btn--white">Book now!</a>
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@ function Offer() {
                                 <p className="card__offer__price-only">Only</p>
                                 <p className="card__offer__price-value">$897</p>
                             </div>
-                            <a href="#popup" className="btn btn--white">Book now!</a>
+                            <a onClick={bagHandeler} className="btn btn--white">Book now!</a>
                         </div>
                     </div>
                 </div>
@@ -85,7 +85,7 @@ function Offer() {
                                 <p className="card__offer__price-only">Only</p>
                                 <p className="card__offer__price-value">$897</p>
                             </div>
-                            <a href="#popup" className="btn btn--white">Book now!</a>
+                            <a onClick={bagHandeler} className="btn btn--white">Book now!</a>
                         </div>
                     </div>
                 </div>

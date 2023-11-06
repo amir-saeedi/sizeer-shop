@@ -1,4 +1,5 @@
 "use client";
+import { toast } from 'react-toastify';
 
 export const initialState = [
     {
@@ -37,12 +38,40 @@ const ADD_LIKE = "ADD_LIKE";
 const REMOVE_LIKE = "REMOVE_LIKE";
 
 export function addLikes(like) {
+    toast.success(
+        <>
+            <b>{like.title}</b> added to likes
+        </>,
+        {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        });
     return {
         type: ADD_LIKE,
         like,
     };
 }
 export function RemoveLikes(like) {
+    toast.warn(
+        <>
+            <b>{like.title}</b> removed from likes
+        </>,
+        {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        });
     return {
         type: REMOVE_LIKE,
         like,

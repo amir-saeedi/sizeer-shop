@@ -15,6 +15,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { addLikes, RemoveLikes } from "../redux/like/like";
 
 
+
+
 async function getData() {
   const res = await fetch('https://fakestoreapi.com/products', {
     // cache: "force-cache" // SSG get static side props
@@ -40,10 +42,10 @@ export default function Home({ params, searchParams }) {
   }, []);
 
   const addLike = (product) => {
-    dispatch(addLikes(product))
+    dispatch(addLikes(product));
   }
   const removeLike = (product) => {
-    dispatch(RemoveLikes(product))
+    dispatch(RemoveLikes(product));
   }
 
   return (
@@ -53,10 +55,11 @@ export default function Home({ params, searchParams }) {
           <Header
             myFont2={myFont2}
             bagHandeler={bagHandeler}
+            liked={liked}
           />
           <Vip data={data} addLike={addLike} removeLike={removeLike} liked={liked} />
-          <Video />
-          <Offer />
+          <Video bagHandeler={bagHandeler} />
+          <Offer bagHandeler={bagHandeler} />
         </main >)
       }
       <ModalComponent show={show} setShow={setShow} justAccept={true}

@@ -20,7 +20,7 @@ function Vip({ data, addLike, removeLike, liked }) {
                                         {liked.find(like => like.id === val.id) ?
                                             <FaHeart color='red' onClick={() => removeLike(val)} />
                                             :
-                                            <FaRegHeart onClick={() => addLike(val)} />
+                                            <FaRegHeart color='black' onClick={() => addLike(val)} />
                                         }
                                     </div>
                                 </div>

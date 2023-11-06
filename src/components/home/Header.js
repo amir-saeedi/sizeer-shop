@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { FaSearch, FaRegHeart, FaShoppingBasket, FaHeart, FaStar } from 'react-icons/fa'
 import Link from 'next/link';
 
-function Header({ myFont2, bagHandeler }) {
+function Header({ myFont2, bagHandeler, liked }) {
     const [selectSize, setSelectSize] = React.useState(2);
     const handelSize = (index) => {
         setSelectSize(index);
@@ -53,7 +53,7 @@ function Header({ myFont2, bagHandeler }) {
                     <Link href="/checkout" className='header__nav--dashboard--2'>
                         <FaRegHeart />
                         <div className='header__nav--dashboard--label'>
-                            <span>3</span>
+                            <span>{liked.length}</span>
                         </div>
                     </Link>
                     <Link href="/checkout" className='header__nav--dashboard--3'>
