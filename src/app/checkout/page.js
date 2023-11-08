@@ -7,6 +7,7 @@ import Input from "../../components/Input"
 import { useDispatch, useSelector } from "react-redux";
 import { FaArrowRight, FaMinus, FaPlus, FaTrash } from "react-icons/fa";
 import { decreaseCarts, increaseCarts, removeCarts } from "../../redux/cart/carts";
+import ModalComponent from "../../components/ModalComponent";
 
 function pages({ params, searchParams }) {
     const carts = useSelector(state => state.carts);
@@ -19,11 +20,12 @@ function pages({ params, searchParams }) {
     } = useForm({
         defaultValues: {
             checkbox: 2,
-            first_name:"hello"
+            first_name: "hello"
         },
     })
     const sumWithInitial = carts.reduce((accumulator, currentValue) => accumulator + currentValue?.price * currentValue?.number, 0);
-
+    const [show, setShow] = React.useState(false);
+    const bagHandeler = () => setShow(true);
     const onSubmit = (data) => console.log(data);
 
     const increaseCart = (product) => {
@@ -156,7 +158,7 @@ function pages({ params, searchParams }) {
                             <p>$-0.00</p>
                             <h6>Total</h6>
                             <h6> =${sumWithInitial ? Math.floor(sumWithInitial) + Math.floor(sumWithInitial * 0.1) : 0}</h6>
-                            <button className="btn carts__order__price--btn">Pay ${sumWithInitial ? Math.floor(sumWithInitial) + Math.floor(sumWithInitial * 0.1) : 0}</button>
+                            <button onClick={bagHandeler} className="btn carts__order__price--btn">Pay ${sumWithInitial ? Math.floor(sumWithInitial) + Math.floor(sumWithInitial * 0.1) : 0}</button>
                         </div>
                     </div>
                 </section>
@@ -217,6 +219,12 @@ function pages({ params, searchParams }) {
                     </div>
                 </section>
             </div>
+            <ModalComponent show={show} setShow={setShow} justAccept={true}
+                text={<>
+                    <h4>Your order has been accepted</h4>
+                    <p>translation ID: 2156038859</p>
+                </>}
+            />
         </form>
     )
 }

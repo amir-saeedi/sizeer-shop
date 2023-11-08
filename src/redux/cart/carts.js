@@ -1,5 +1,7 @@
 "use client";
 
+import { toast } from "react-toastify";
+
 export const initialState = [
     {
         category: "men's clothing",
@@ -46,8 +48,22 @@ export function removeCarts(carts) {
 function carts(state = initialState, action) {
     switch (action.type) {
         case ADD_CARTS:
-            const checker = state.find(cart => cart.id === action.carts.id)
+            const checker = state.find(cart => cart.id === action.carts.id);
             if (!checker) {
+                toast.success(
+                    <>
+                        <b>{action.carts.title}</b> added to cart
+                    </>,
+                    {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                    });
                 return [
                     ...state,
                     {
@@ -74,6 +90,20 @@ function carts(state = initialState, action) {
                 },
             ];
         case REMOVE_CARTS:
+            toast.warn(
+                <>
+                    <b>{action.carts.title}</b> removed from cart
+                </>,
+                {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
             return [
                 ...state.filter(cart => cart.id !== action.carts.id)
             ];
