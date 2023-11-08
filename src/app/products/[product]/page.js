@@ -1,11 +1,11 @@
 "use client"
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useReducer } from "react";
 import { Badge, Image, Carousel } from "react-bootstrap";
 import { FaAngleLeft, FaAngleRight, FaMinus, FaPlus, FaSave, FaShippingFast, FaStar } from "react-icons/fa";
 import ModalComponent from "../../../components/ModalComponent";
 import { useSelector, useDispatch } from "react-redux";
-import { addCarts, removeCarts } from "../../../redux/cart/carts";
+import { addCarts, increaseCarts, decreaseCarts, removeCarts } from "../../../redux/cart/carts";
 import Link from "next/link";
 
 async function getData(id) {
@@ -20,6 +20,22 @@ async function getData(id) {
   // You can return Date, Map, Set, etc.
   return res.json();
 }
+
+const counter = (state, action) => {
+  const { type } = action;
+  switch (type) {
+    case "increment": {
+      // const cart = carts.find(cart => cart.id === data.id);
+      return { ...state, counter: state.counter + 1 }
+    }
+    case "decrement": {
+      return { ...state, counter: state.counter > 1 ? state.counter - 1 : 1 }
+    }
+    default:
+      return state;
+  }
+}
+
 function pages({ params, searchParams }) {
   // const { id } = params
   const carts = useSelector(state => state.carts);
@@ -32,9 +48,16 @@ function pages({ params, searchParams }) {
   console.log(carts)
 
   const [chooseColor, setChooseColor] = useState(1);
+  const [number, desp] = useReducer(counter, { counter: 1 });
 
   const addCart = (product) => {
-    dispatch(addCarts(product));
+    dispatch(addCarts({ ...product, number: number.counter }));
+  }
+  const increaseCart = (product) => {
+    dispatch(increaseCarts({ ...product, number: number.counter }));
+  }
+  const decreaseCart = (product) => {
+    dispatch(decreaseCarts({ ...product, number: number.counter }));
   }
   const removeCart = (product) => {
     dispatch(removeCarts(product));
@@ -152,9 +175,21 @@ function pages({ params, searchParams }) {
               </div>
               <div className="product__details--counter">
                 <div className="product__details--counter--box">
-                  <button className="btn--counter"><FaPlus /></button>
-                  <p>1</p>
-                  <button className="btn--counter"><FaMinus /></button>
+                  <button className="btn--counter"
+                    onClick={() => {
+                      desp({ type: "increment" })
+                      carts.find(cart => cart.id === data.id) ? increaseCart(data) : "";
+                    }}>
+                    <FaPlus />
+                  </button>
+                  <p>{number.counter}</p>
+                  <button className="btn--counter"
+                    onClick={() => {
+                      desp({ type: "decrement" })
+                      carts.find(cart => cart.id === data.id) ? decreaseCart(data) : "";
+                    }}>
+                    <FaMinus />
+                  </button>
                 </div>
                 <div>
                   <div className="product__details--counter--text">

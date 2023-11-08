@@ -90,7 +90,7 @@ function NavbarCom() {
                                 <ul className='nav__search__list'>
                                     {data.map(val => {
                                         return (
-                                            <Link href={"#"}>
+                                            <Link key={val.id} href={"#"}>
                                                 <li key={val.id}>
                                                     <img src={val.image} alt={val.title} className='nav__search__list--img' />
                                                     <p className='nav__search__list--title'>{val.title}</p>
