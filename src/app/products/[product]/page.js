@@ -7,6 +7,7 @@ import ModalComponent from "../../../components/ModalComponent";
 import { useSelector, useDispatch } from "react-redux";
 import { addCarts, increaseCarts, decreaseCarts, removeCarts } from "../../../redux/cart/carts";
 import Link from "next/link";
+import Loading from "../../loading";
 
 async function getData(id) {
   const res = await fetch(`https://fakestoreapi.com/products/${id}`, {
@@ -39,13 +40,13 @@ const counter = (state, action) => {
 function pages({ params, searchParams }) {
   // const { id } = params
   const carts = useSelector(state => state.carts);
+  const [loading, setLoading] = React.useState(true);
   const dispatch = useDispatch();
   const [data, setData] = React.useState(null);
   const [imageGallery, setImageGallery] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [zoom, setZoom] = useState(false);
   const carouselContainerRef = useRef(null);
-  console.log(carts)
 
   const [chooseColor, setChooseColor] = useState(1);
   const [number, desp] = useReducer(counter, { counter: 1 });
@@ -76,11 +77,12 @@ function pages({ params, searchParams }) {
     getData(params.product).then(valuse => {
       setData(valuse)
       setImageGallery([valuse.image, valuse.image, valuse.image])
-    });
+    }).then(() => setLoading(false));
   }, []);
   return (
     <React.Fragment>
-      {data && imageGallery &&
+      {loading && <Loading />}
+      {data && imageGallery && !loading &&
         <div className='container'>
           <div className='product'>
             <div className='product__gallery'>

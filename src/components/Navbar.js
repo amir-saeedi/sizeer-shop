@@ -24,7 +24,7 @@ async function getData() {
 }
 
 function NavbarCom() {
-    const pathname = usePathname()
+    const pathname = usePathname();
     const [data, setData] = React.useState(null);
     React.useEffect(() => {
         getData().then(valuse => setData(valuse));
@@ -32,6 +32,7 @@ function NavbarCom() {
     const nav = React.useRef(null)
     useEffect(() => {
         const navbar = (screen.height) * 0.80;
+        nav.current?.classList.add("sticky")
         const handleScroll = () => {
             if (window.pageYOffset >= navbar) {
                 nav.current?.classList.add("sticky");
@@ -41,26 +42,26 @@ function NavbarCom() {
                 nav.current?.classList.remove("sticky");
             }
         };
-        if (pathname === "/")
-            window.addEventListener('scroll', handleScroll);
+        if (pathname === "/") window.addEventListener('scroll', handleScroll);
         return () => {
-            if (pathname === "/")
-                window.removeEventListener('scroll', handleScroll);
+            if (pathname === "/") window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [pathname]);
     return (
         <div id="navbarC" className={`navAnimation ${pathname === "/" ? "noSticky" : "sticky"}`} ref={nav}>
             <Navbar collapseOnSelect expand="lg" className="" bg='red'>
                 <Container>
-                    <Navbar.Brand href="/">
-                        <Image
-                            src="/sizeer-logo.png"
-                            alt="Vercel Logo"
-                            className="dark:invert"
-                            width={120}
-                            height={45}
-                            priority
-                        />
+                    <Navbar.Brand>
+                        <Link href={"/"}>
+                            <Image
+                                src="/sizeer-logo.png"
+                                alt="Vercel Logo"
+                                className="dark:invert"
+                                width={120}
+                                height={45}
+                                priority
+                            />
+                        </Link>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav" className='responsive-navbar-nav'>

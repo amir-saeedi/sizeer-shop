@@ -12,7 +12,7 @@
     }
 
     &__review {
-        border: 2px solid $color-grey-dark;
+        border: 2px solid rgba($color-grey-dark, .4);
         border-radius: 5px;
 
         &__list {
@@ -123,7 +123,7 @@
     }
 
     &__order {
-        border: 2px solid $color-grey-dark;
+        border: 2px solid rgba($color-grey-dark, .4);
         border-radius: 5px;
         grid-column: 2;
         grid-row: 1 / span 2;
@@ -309,7 +309,7 @@
     }
 
     &__information {
-        border: 2px solid $color-grey-dark;
+        border: 2px solid rgba($color-grey-dark, .4);
         border-radius: 5px;
 
         &--title {

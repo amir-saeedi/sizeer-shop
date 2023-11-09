@@ -73,22 +73,26 @@ function carts(state = initialState, action) {
             }
         case INCREASE_CARTS:
             const InCart = state.find(cart => cart.id === action.carts.id);
+            const Inindex = state.indexOf(InCart);
             return [
-                ...state.filter(cart => cart.id !== action.carts.id),
+                ...state.slice(0, Inindex),
                 {
                     ...InCart,
                     number: InCart.number + 1
                 },
-            ];
+                ...state.slice(Inindex + 1, state.length),
+            ]
         case DECREASE_CARTS:
             const DeCart = state.find(cart => cart.id === action.carts.id);
+            const Deindex = state.indexOf(DeCart);
             return [
-                ...state.filter(cart => cart.id !== action.carts.id),
+                ...state.slice(0, Deindex),
                 {
                     ...DeCart,
-                    number: DeCart.number > 1 ? DeCart.number - 1 : 1
+                    number: DeCart.number - 1
                 },
-            ];
+                ...state.slice(Deindex + 1, state.length),
+            ]
         case REMOVE_CARTS:
             toast.warn(
                 <>
