@@ -18,7 +18,7 @@ const myFont = localFont({ src: '../fonts/Borel-Regular.ttf' })
 // Font files can be colocated inside of `pages`
 
 export const metadata = {
-  title: 'Sizze Shop',
+  title: 'Sizeer Shop',
   description: 'Created by Amir Saeedi',
 }
 export default function RootLayout({ children }) {

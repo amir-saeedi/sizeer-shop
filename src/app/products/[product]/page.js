@@ -201,9 +201,11 @@ function pages({ params, searchParams }) {
                 </div>
               </div>
               <div className="product__details--buttons">
-                <Link onClick={() => addCart(data)}
+                <Link
+                  href="/checkout"
+                  onClick={() => addCart(data)}
                   className="btn product__details--buttons--1"
-                  href="/checkout">
+                >
                   Buy Now
                 </Link>
                 <button onClick={() => {
