@@ -48,6 +48,32 @@ export default function Home({ params, searchParams }) {
     dispatch(RemoveLikes(product));
   }
 
+  // This code for make a responsive page in scolling time at spicial element. {"RED BOX"}
+  // const [observerStyle, setObserverStyle] = useState(0);
+  // const redBox = useRef(null);
+  // useEffect(() => {
+  //   let accepter = false;
+  //   let boundingTop = 0;
+  //   const obsorver = new IntersectionObserver(entries => {
+  //     const entry = entries[0];
+  //     accepter = (entry.isIntersecting)
+  //     boundingTop = (entry.boundingClientRect.top)
+  //     // console.log(entry.boundingClientRect.top)
+  //   })
+  //   obsorver.observe(redBox.current)
+
+  //   const handleResize = (e) => {
+  //     if (accepter) {
+  //       setObserverStyle(window.scrollY - boundingTop)
+  //     }
+  //   };
+  //   window.addEventListener('scroll', handleResize);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleResize);
+  //   };
+  // }, []);
+  // console.log(observerStyle)
+
   return (
     <React.Fragment>
       {loading && <Loading />}
@@ -65,6 +91,30 @@ export default function Home({ params, searchParams }) {
           <p>Jordan MA2 added to your shopping cart</p>
         </>}
       />
+      {/* <div ref={redBox} className="redBox" style={{
+        height: "300px",
+        background: "red",
+        position: "relative"
+      }}>
+        <div style={{
+          height: "150px",
+          width: "150px",
+          background: "green",
+          position: "absolute",
+          top: observerStyle,
+          left: 0,
+        }}>
+        </div>
+        <div style={{
+          height: "150px",
+          width: "150px",
+          background: "yellow",
+          position: "absolute",
+          bottom: observerStyle,
+          right: 0,
+        }}>
+        </div>
+      </div> */}
     </React.Fragment>
   )
 }
